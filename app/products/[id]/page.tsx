@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma'
+import AddToCartButton from '@/app/components/AddToCartButton'
 
 export default async function ProductDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
@@ -17,18 +18,12 @@ export default async function ProductDetail({ params }: { params: Promise<{ id: 
       <p style={{ fontSize: '28px', fontWeight: 'bold', marginBottom: '24px' }}>
         Rs. {product.price.toLocaleString()}
       </p>
-      <button style={{
-        backgroundColor: 'black',
-        color: 'white',
-        padding: '14px 32px',
-        border: 'none',
-        borderRadius: '8px',
-        fontSize: '16px',
-        cursor: 'pointer',
-        width: '100%'
-      }}>
-        Add to Cart
-      </button>
+      <AddToCartButton product={{
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        emoji: product.emoji
+      }} />
     </div>
   )
 }
