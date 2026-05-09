@@ -1,15 +1,9 @@
+import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 
-const products = [
-  { id: 1, name: 'Wireless Headphones', price: 2999, emoji: '🎧' },
-  { id: 2, name: 'Mechanical Keyboard', price: 4999, emoji: '⌨️' },
-  { id: 3, name: 'USB-C Hub',           price: 1999, emoji: '🔌' },
-  { id: 4, name: 'Webcam HD',           price: 3499, emoji: '📷' },
-  { id: 5, name: 'Mouse Pad XL',        price:  799, emoji: '🖱️' },
-  { id: 6, name: 'LED Desk Lamp',       price: 1499, emoji: '💡' },
-]
+export default async function ProductsPage() {
+  const products = await prisma.product.findMany()
 
-export default function ProductsPage() {
   return (
     <div>
       <h2 style={{ marginBottom: '24px' }}>All Products</h2>
@@ -25,8 +19,7 @@ export default function ProductsPage() {
               border: '1px solid #eee',
               borderRadius: '12px',
               padding: '24px',
-              cursor: 'pointer',
-              transition: 'box-shadow 0.2s'
+              cursor: 'pointer'
             }}>
               <div style={{ fontSize: '48px', marginBottom: '12px' }}>
                 {product.emoji}
@@ -34,7 +27,7 @@ export default function ProductsPage() {
               <h3 style={{ margin: '0 0 8px', fontSize: '16px' }}>
                 {product.name}
               </h3>
-              <p style={{ margin: 0, fontWeight: 'bold', color: '#1a1a1a' }}>
+              <p style={{ margin: 0, fontWeight: 'bold' }}>
                 Rs. {product.price.toLocaleString()}
               </p>
             </div>

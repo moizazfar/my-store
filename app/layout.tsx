@@ -12,7 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={geist.className}>
+      <body className={geist.className} suppressHydrationWarning>
         <Navbar />
         <main style={{ maxWidth: '1200px', margin: '0 auto', padding: '32px 16px' }}>
           {children}
