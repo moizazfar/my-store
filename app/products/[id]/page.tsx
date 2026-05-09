@@ -1,6 +1,8 @@
 import { prisma } from '@/lib/prisma'
 import AddToCartButton from '@/app/components/AddToCartButton'
 
+export const dynamic = 'force-dynamic'
+
 export default async function ProductDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
 

@@ -1,6 +1,13 @@
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 
+type Product = {
+  id: number
+  name: string
+  price: number
+  emoji: string
+}
+
 export default async function ProductsPage() {
   const products = await prisma.product.findMany()
 
@@ -12,7 +19,7 @@ export default async function ProductsPage() {
         gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
         gap: '24px'
       }}>
-        {products.map(product => (
+        {products.map((product: Product) => (
           <Link key={product.id} href={`/products/${product.id}`}
             style={{ textDecoration: 'none', color: 'inherit' }}>
             <div style={{
